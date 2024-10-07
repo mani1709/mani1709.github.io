@@ -1,0 +1,99 @@
+/* General Styles for Projects */
+body {
+    background-color: #333;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #fff;
+}
+
+/* Fixed Back Button */
+#back-button {
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    background-color: #444;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#back-button a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+#back-button a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content */
+#project-content {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Title Section */
+.project-title h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+/* Text Description */
+.description-text {
+    color: #fff;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    text-align: left;
+}
+
+/* Scrollable Images Section */
+.project-images {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    justify-content: center; 
+}
+
+.project-images img {
+    width: auto;
+    height: 200px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Scrollbar Styling */
+.project-images::-webkit-scrollbar {
+    height: 8px;
+}
+
+.project-images::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .description-text {
+        text-align: center;
+    }
+
+    .project-images img {
+        height: 150px;
+    }
+}
+
+/* Style for YouTube Link */
+.description-text a {
+    color: #00bfff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.description-text a:hover {
+    text-decoration: underline;
+    color: #007acc;
+}
