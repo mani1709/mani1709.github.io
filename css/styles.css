@@ -154,6 +154,18 @@ footer {
     width: 100%;
 }
 
+/* Style for YouTube Link */
+.about-text a {
+    color: #00bfff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.about-text a:hover {
+    text-decoration: underline;
+    color: #007acc;
+}
+
 /* Projects Section */
 #projects h2 {
     font-size: 2rem;
