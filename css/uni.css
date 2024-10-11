@@ -1,11 +1,10 @@
 body {
-    background-color: #333; /* Body styling */
+    background-color: #333;
     margin: 0;
     font-family: Arial, sans-serif;
     color: #fff;
 }
 
-/* Back Button Styling */
 #back-button {
     position: fixed;
     top: 10px;
@@ -31,7 +30,7 @@ body {
     text-decoration: underline;
 }
 
-/* Main Content Styling */
+
 #project-content {
     padding: 80px 20px;
     max-width: 1200px;
@@ -40,7 +39,6 @@ body {
     border-radius: 8px;
 }
 
-/* Project Title Styling */
 .project-title h1 {
     text-align: center;
     font-size: 42px;
@@ -48,15 +46,13 @@ body {
     color: #fff;
 }
 
-/* Bachelor Thesis Section Styling */
-.bachelor-thesis-section h2 {
+.thesis-section h2 {
     text-align: left;
     font-size: 32px;
     margin-bottom: 10px;
     color: #fff;
 }
 
-/* Course Section Styling */
 .course-section {
     margin-bottom: 40px;
 }
@@ -67,7 +63,6 @@ body {
     color: #fff;
 }
 
-/* Individual Course Styling */
 .course {
     margin-bottom: 30px;
 }
@@ -89,7 +84,6 @@ body {
     line-height: 1.6;
 }
 
-/* Course List Styling */
 .course-list {
     list-style-type: none;
     padding-left: 0;
@@ -105,7 +99,6 @@ body {
     font-weight: bold;
 }
 
-/* Project Images Section Styling */
 .project-images {
     display: flex;
     gap: 10px;
@@ -121,7 +114,6 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Scrollbar Styling */
 .project-images::-webkit-scrollbar {
     height: 8px;
 }
@@ -131,7 +123,6 @@ body {
     border-radius: 10px;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .description-text {
         text-align: center;
@@ -142,20 +133,20 @@ body {
     }
 }
 
-/* YouTube Link Styling */
-.bachelor-thesis-section a {
+/* Style for YouTube Link */
+.thesis-section a {
     font-size: 24px;
     color: #00bfff;
     text-decoration: none;
     font-weight: bold;
 }
 
-.bachelor-thesis-section a:hover {
+.thesis-section a:hover {
     text-decoration: underline;
     color: #007acc;
 }
 
-/* Course Link Styling */
+
 .course a {
     color: #00bfff;
     text-decoration: none;
@@ -163,17 +154,6 @@ body {
 }
 
 .course a:hover {
-    text-decoration: underline;
-    color: #007acc;
-}
-
-.description-text a {
-    color: #00bfff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.project-link a:hover {
     text-decoration: underline;
     color: #007acc;
 }
