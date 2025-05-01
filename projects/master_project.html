@@ -15,28 +15,70 @@
     <main id="project-content">
         <section id="project">
             <div class="project-title">
-                <h1>Procedural Planet Generator</h1>
+                <h1>Procedural Planet Generator with Level of Detail System</h1>
             </div>
 
             <div class="description-text">
                 <p>
-                    The Procedural Planet Generator is designed to create realistic and immersive planets using 
-                    advanced algorithms and randomization techniques. This project aims to enhance the experience of 
-                    exploration in virtual environments by generating unique planets each time.
+                    <a href="https://phaidra.univie.ac.at/detail/o:2124844" target="_blank">
+                        Read the master thesis, which explains the project in detail
+                    </a>
+                </p>
+
+                <p>
+                    <a href="https://github.com/mani1709/PlanetGenerator" target="_blank">
+                        Link to the project repository
+                    </a>
+                </p>
+
+                <p>
+                    <a href="" target="_blank">
+                        TBA - Link to the IFIP/ICEC 2025 paper based on the project
+                    </a>
+                </p>
+
+                <p>
+                    This project was developed as part of my Master's thesis and focuses on procedural generation of entire planets with an adaptive level-of-detail (LOD) system. It combines real-time rendering, procedural terrain generation, and dynamic world-building in a performant and scalable framework.
+                </p>
+
+                <h2>Planet Geometry and Terrain Algorithms</h2>
+                <p>
+                    The planet surface is built using a <strong>quadsphere</strong> geometry. Each face of the sphere starts as a 10x10 grid and these are recursively subdivided into smaller quads as the player approaches, allowing smooth transitions and efficient rendering. The LOD system supports dynamic refinement based on distance and view direction, with high detail even at the surface level.
                 </p>
                 <p>
-                    Currently being developed with Godot, GLSL, and Blender, 
-                    this generator focuses on achieving a balance between performance and visual fidelity.
+                    Two heightmap generation algorithms were implemented:
+                    <ul>
+                        <li><strong>Algorithm 1:</strong> Uses Perlin noise and Fractal Brownian Motion (FBM) to calculate a single height value per vertex. Parameters such as persistence, lacunarity, and exponentiation allow fine control over terrain appearance.</li>
+                        <li><strong>Algorithm 2:</strong> Inspired by Minecraft's terrain system, it generates four distinct values per vertex: continentalness, erosion, peaks & valleys, and temperature. Each can be adjusted using spline curves for refined terrain shaping (e.g., gradual rise near beaches, steeper ascent near mountains). Temperature is influenced by the dot product between surface normal and sun direction.</li>
+                    </ul>
+                </p>
+
+                <h2>Visual Features and Materials</h2>
+                <p>
+                    Two different material approaches were explored:
+                    <ul>
+                        <li><strong>Planet 1:</strong> Simple color-based material driven by height, transitioning to textures at higher LODs.</li>
+                        <li><strong>Planet 2:</strong> Shader that combines height, temperature, continentalness, erosion, and peaks/valleys for highly customizable surface appearance. A spline point system furthermore allows to alter certain heights, allowing for even more finegrained control.</li>
+                    </ul>
                 </p>
                 <p>
-                    The project is still ongoing, and therefore this page will be updated as soon as the project has been finished.
+                    Additional visual elements include a dynamic sky system with sun, moon, stars, clouds, and support for rendering water and lava.
                 </p>
-            </div>
 
-            <div class="project-images">
-                <img src="../assets/planet.png">
-            </div>
+                <h2>Interactive World Elements</h2>
+                <p>
+                    The world features many small additions to increase immersion like trees and clouds as well as a day and night cycle, giving the environment a lively and explorable feel.
+                </p>
+                <p>
+                    The entire system is designed for real-time performance, with scalable detail and responsiveness to player movement and proximity.
+                </p>
 
+
+
+                <div class="project-images">
+                    <img src="../assets/planet.png" alt="Procedural Planet Preview">
+                </div>
+            </div>
         </section>
     </main>
     <script src="../js/go_back.js"></script>

@@ -20,20 +20,47 @@
 
             <div class="description-text">
                 <p>
-                    This project was part of my Bachelor's thesis, where I worked on hand detection and gesture recognition using TensorFlow in Python. The project was split into two main tasks: image generation and training/testing the machine learning model.
+                    This project was developed as part of my Bachelor's thesis and focuses on two core components: automated data generation and training a deep learning model for hand detection and gesture recognition using TensorFlow in Python.
+                </p>
+
+                <h2>Data Generation</h2>
+                <p>
+                    To build a robust dataset, I used Unity along with a commercially available 3D hand model. I modified the model to enable human-like finger movements and constructed a dynamic scene setup with customizable lighting, backgrounds, and camera parameters.
                 </p>
                 <p>
-                    For the image generation task, I used Unity to generate numerous images of a 3D hand model in different positions and lighting conditions. The purpose was to provide a diverse dataset for the model to learn from.
+                    I implemented a fully automated script that randomly adjusted these scene parameters and captured screenshots. This approach allowed me to create large, diverse datasets in minutes. Each parameter (e.g., background, light intensity, camera angle) could be toggled to study its effect on model performance.
+                </p>
+
+                <h2>Model Architecture and Training</h2>
+                <p>
+                    For each of the following tasks, I trained a separate model:
+                    <ul>
+                        <li><strong>Binary Classification:</strong> Determine whether a hand is present in the image.</li>
+                        <li><strong>Gesture Recognition:</strong> Identify one of five hand poses.</li>
+                    </ul>
                 </p>
                 <p>
-                    The second task involved training the machine learning model. The model was trained on two types of tasks: binary classification (hand present or not) and gesture detection. For binary classification, I generated images where the hand was either present or absent. For gesture detection, I selected distinct hand gestures and trained the model to classify them correctly.
+                    I experimented with multiple model architectures, training strategies, and image augmentations. This included testing which alterations (e.g., color jitter, noise) improved or reduced accuracy.
                 </p>
                 <p>
-                    The results were promising. The binary task consistently returned accurate results, and the gesture detection model worked well in most cases when tested with real-life data.
+                    For real-world validation, I created a test set of 100 images featuring my own hand in various locations around Vienna. The final models performed well, achieving 98% accuracy in the hand detection and up to 90% accuracy in the pose recognition task.
                 </p>
+
                 <p>
                     <a href="https://www.youtube.com/watch?v=3fsEKxG2vEQ" target="_blank">
-                        Watch the YouTube video about the project
+                        ▶ Watch the YouTube video about the project
+                    </a>
+                </p>
+
+                <p>
+                    <a href="https://github.com/mani1709/BachelorThesisImageGeneration" target="_blank">
+                        Link to the image generation repository of the project
+                    </a>
+                </p>
+
+                <p>
+                    <a href="https://github.com/mani1709/BachelorThesisImageClassification" target="_blank">
+                        Link to the deep learning repository of the project
                     </a>
                 </p>
             </div>
