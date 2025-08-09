@@ -5,6 +5,7 @@ body {
     font-family: Arial, sans-serif;
     color: #fff;
     font-size: 1rem;
+    line-height: 1.6;
 }
 
 html {
@@ -49,6 +50,7 @@ header nav ul {
     padding: 0;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 header nav ul li {
@@ -59,30 +61,12 @@ header nav ul li a {
     color: #fff;
     text-decoration: none;
     font-size: 16px;
+    white-space: nowrap;
 }
 
 header nav ul li a:hover {
     text-decoration: underline;
 }
-
-@media (max-width: 768px) {
-    header {
-        padding: 10px;
-    }
-
-    header .container {
-        padding: 0 10px;
-    }
-
-    header nav ul {
-        flex-wrap: wrap;
-    }
-
-    header nav ul li {
-        margin-left: 10px;
-    }
-}
-
 
 /* Main Content */
 main {
@@ -99,6 +83,59 @@ main h1 {
     color: #fff;
 }
 
+/* PhD Announcement Box */
+.phd-announcement {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 30px auto;
+    max-width: 800px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.phd-announcement::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    pointer-events: none;
+}
+
+.phd-content {
+    position: relative;
+    z-index: 1;
+}
+
+.phd-announcement h2 {
+    color: #fff;
+    font-size: 1.8rem;
+    margin: 0 0 15px 0;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.phd-announcement p {
+    color: #fff;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 10px 0;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.phd-announcement strong {
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Content */
 .content {
     text-align: left;
 }
@@ -250,7 +287,6 @@ footer {
 }
 
 /* Education Item Section */
-
 .education-item ul {
     list-style-type: disc;
     padding-left: 20px;
@@ -296,7 +332,6 @@ footer {
 }
 
 /* Publication Item Section */
-
 .publication-item ul {
     list-style-type: disc;
     padding-left: 20px;
@@ -373,47 +408,6 @@ footer {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-}
-
-@media (max-width: 768px) {
-    .about-section {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .about-text {
-        padding-right: 0;
-        max-width: 100%;
-    }
-
-    .about-image {
-        max-width: 100%;
-        margin-top: 20px;
-    }
-
-    .about-image img {
-        max-width: 80%;
-    }
-
-    header .logo h1 {
-        font-size: 1.25rem;
-    }
-
-    main {
-        width: 90%;
-    }
-
-    footer {
-        width: 90%;
-    }
-
-    #resume h2, #workexperience h2, #education h2 {
-        font-size: 1.75rem;
-    }
-
-    .job h3, .education-item h3 {
-        font-size: 1.25rem;
-    }
 }
 
 /* Contact Form */
@@ -514,4 +508,279 @@ body.modal-active {
 
 #success-modal {
     pointer-events: all;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    /* Header mobile improvements */
+    header {
+        padding: 8px 15px;
+        flex-direction: column;
+        align-items: flex-start;
+        min-height: 60px;
+    }
+
+    header .logo h1 {
+        font-size: 1.25rem;
+        margin-bottom: 5px;
+    }
+
+    header nav ul {
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 5px;
+    }
+
+    header nav ul li {
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+
+    header nav ul li a {
+        font-size: 14px;
+        padding: 4px 8px;
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: background-color 0.3s ease;
+    }
+
+    header nav ul li a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        text-decoration: none;
+    }
+
+    /* Main content mobile improvements */
+    main {
+        width: 95%;
+        padding-top: 100px;
+    }
+
+    main h1 {
+        font-size: 1.75rem;
+        margin-top: 15px;
+        padding: 0 10px;
+    }
+
+    /* PhD announcement mobile improvements */
+    .phd-announcement {
+        margin: 20px 10px;
+        padding: 20px 15px;
+        border-radius: 10px;
+    }
+    
+    .phd-announcement h2 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+    
+    .phd-announcement p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin: 8px 0;
+    }
+
+    /* Content sections mobile improvements */
+    .content {
+        padding: 0 10px;
+    }
+
+    .about-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .about-text {
+        padding-right: 0;
+        max-width: 100%;
+        font-size: 0.95rem;
+    }
+
+    .about-image {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+
+    .about-image img {
+        max-width: 80%;
+        height: auto;
+    }
+
+    /* Section headings mobile improvements */
+    #about h2, #projects h2, #education h2, #publication h2, #workexperience h2, #resume h2, #contact h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        padding: 0 10px;
+    }
+
+    /* Project containers mobile improvements */
+    .project-container {
+        margin: 20px 0;
+        padding: 15px;
+    }
+
+    .project-container h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .project-container ul {
+        padding-left: 20px;
+    }
+
+    .project-container ul li {
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+    }
+
+    /* Education items mobile improvements */
+    .education-item {
+        margin: 20px 0;
+        padding: 15px;
+        text-align: left;
+    }
+
+    .education-item h3 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    .education-item p {
+        font-size: 0.9rem;
+        margin: 5px 0;
+    }
+
+    .education-item ul {
+        padding-left: 20px;
+    }
+
+    .education-item ul li {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+
+    /* Publication items mobile improvements */
+    .publication-item {
+        margin: 20px 0;
+        padding: 15px;
+        text-align: left;
+    }
+
+    .publication-item h3 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    .publication-item p {
+        font-size: 0.9rem;
+        margin: 5px 0;
+    }
+
+    /* Job items mobile improvements */
+    .job {
+        margin: 20px 0;
+        padding: 15px;
+        text-align: left;
+    }
+
+    .job h3 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    .job p {
+        font-size: 0.9rem;
+        margin: 5px 0;
+        line-height: 1.4;
+    }
+
+    /* Resume section mobile improvements */
+    .resume-preview {
+        margin: 20px 0;
+    }
+
+    .resume-preview iframe {
+        height: 400px;
+    }
+
+    /* Contact form mobile improvements */
+    #contact-form {
+        margin: 20px 0;
+        padding: 15px;
+    }
+
+    #contact-form label {
+        font-size: 0.9rem;
+        margin-top: 15px;
+    }
+
+    #contact-form input, #contact-form textarea {
+        font-size: 0.9rem;
+        padding: 8px;
+        margin-bottom: 15px;
+    }
+
+    #contact-form button {
+        font-size: 1rem;
+        padding: 12px 20px;
+        width: 100%;
+    }
+
+    /* Footer mobile improvements */
+    footer {
+        width: 95%;
+        padding: 20px 10px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    header {
+        padding: 5px 10px;
+    }
+
+    header .logo h1 {
+        font-size: 1.1rem;
+    }
+
+    header nav ul li a {
+        font-size: 12px;
+        padding: 3px 6px;
+    }
+
+    main {
+        width: 98%;
+        padding-top: 90px;
+    }
+
+    main h1 {
+        font-size: 1.5rem;
+    }
+
+    .phd-announcement {
+        margin: 15px 5px;
+        padding: 15px 10px;
+    }
+
+    .phd-announcement h2 {
+        font-size: 1.2rem;
+    }
+
+    .phd-announcement p {
+        font-size: 0.9rem;
+    }
+
+    .content {
+        padding: 0 5px;
+    }
+
+    .about-text, .job p, .education-item p, .publication-item p {
+        font-size: 0.85rem;
+    }
+
+    .project-container, .education-item, .publication-item, .job {
+        padding: 10px;
+        margin: 15px 0;
+    }
 }
