@@ -289,7 +289,7 @@
                     const desktopPreview = document.getElementById('desktop-preview');
                     const isMobile = window.innerWidth <= 768;
                     
-                    if (!isMobile && desktopPreview) {
+                    if (!isMobile && desktopPreview && desktopPreview.children.length === 0) {
                         const iframe = document.createElement('iframe');
                         iframe.src = 'assets/resume.pdf';
                         iframe.width = '100%';
@@ -299,8 +299,28 @@
                     }
                 }
                 
-                // Load iframe when page loads
-                document.addEventListener('DOMContentLoaded', loadResumeIframe);
+                // Check if mobile on page load and prevent any PDF loading
+                function initializeResumeSection() {
+                    const isMobile = window.innerWidth <= 768;
+                    const desktopPreview = document.getElementById('desktop-preview');
+                    
+                    if (isMobile) {
+                        // On mobile, ensure desktop preview is completely empty
+                        if (desktopPreview) {
+                            desktopPreview.innerHTML = '';
+                            desktopPreview.style.display = 'none';
+                        }
+                    } else {
+                        // On desktop, show preview and load iframe
+                        if (desktopPreview) {
+                            desktopPreview.style.display = 'block';
+                            loadResumeIframe();
+                        }
+                    }
+                }
+                
+                // Initialize when page loads
+                document.addEventListener('DOMContentLoaded', initializeResumeSection);
                 
                 // Handle window resize
                 window.addEventListener('resize', function() {
@@ -308,11 +328,19 @@
                     const isMobile = window.innerWidth <= 768;
                     
                     if (isMobile) {
-                        // Clear iframe on mobile
-                        desktopPreview.innerHTML = '<!-- Iframe will be loaded here via JavaScript only on desktop -->';
-                    } else if (desktopPreview.children.length === 0) {
-                        // Load iframe on desktop if not already loaded
-                        loadResumeIframe();
+                        // Clear iframe and hide on mobile
+                        if (desktopPreview) {
+                            desktopPreview.innerHTML = '';
+                            desktopPreview.style.display = 'none';
+                        }
+                    } else {
+                        // Show and load iframe on desktop
+                        if (desktopPreview) {
+                            desktopPreview.style.display = 'block';
+                            if (desktopPreview.children.length === 0) {
+                                loadResumeIframe();
+                            }
+                        }
                     }
                 });
             </script>
