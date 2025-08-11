@@ -215,11 +215,8 @@
                 <p>Or preview my resume below:</p>
             
                 <div class="resume-preview">
-                    <div class="desktop-preview">
-                        <iframe src="assets/resume.pdf" width="100%" height="600px">
-                            Your browser does not support embedded PDF previews. 
-                            <a href="assets/resume.pdf" download>Download the resume here.</a>
-                        </iframe>
+                    <div class="desktop-preview" id="desktop-preview">
+                        <!-- Iframe will be loaded here via JavaScript only on desktop -->
                     </div>
                     <div class="mobile-preview">
                         <p>📱 <strong>Mobile Preview:</strong> For the best experience on mobile devices, please use the download button above to view my resume.</p>
@@ -256,6 +253,7 @@
             </section>
 
             <script>
+                // Contact form handling
                 document.getElementById('contact-form').addEventListener('submit', async function(e) {
                     e.preventDefault();
                 
@@ -281,9 +279,42 @@
                         alert('There was an error submitting your form. Please try again.');
                     }
                 });
+                
                 function closePopup() {
                     document.getElementById('success-message').style.display = 'none';
                 }
+                
+                // Resume iframe loading - only on desktop
+                function loadResumeIframe() {
+                    const desktopPreview = document.getElementById('desktop-preview');
+                    const isMobile = window.innerWidth <= 768;
+                    
+                    if (!isMobile && desktopPreview) {
+                        const iframe = document.createElement('iframe');
+                        iframe.src = 'assets/resume.pdf';
+                        iframe.width = '100%';
+                        iframe.height = '600px';
+                        iframe.innerHTML = 'Your browser does not support embedded PDF previews. <a href="assets/resume.pdf" download>Download the resume here.</a>';
+                        desktopPreview.appendChild(iframe);
+                    }
+                }
+                
+                // Load iframe when page loads
+                document.addEventListener('DOMContentLoaded', loadResumeIframe);
+                
+                // Handle window resize
+                window.addEventListener('resize', function() {
+                    const desktopPreview = document.getElementById('desktop-preview');
+                    const isMobile = window.innerWidth <= 768;
+                    
+                    if (isMobile) {
+                        // Clear iframe on mobile
+                        desktopPreview.innerHTML = '<!-- Iframe will be loaded here via JavaScript only on desktop -->';
+                    } else if (desktopPreview.children.length === 0) {
+                        // Load iframe on desktop if not already loaded
+                        loadResumeIframe();
+                    }
+                });
             </script>
             </div>
     </main>
