@@ -636,8 +636,9 @@ body.modal-active {
     }
 
     .about-content {
-        flex-direction: column;
+        flex-direction: column !important;
         align-items: center;
+        width: 100%;
     }
 
     .about-text {
@@ -646,6 +647,7 @@ body.modal-active {
         font-size: 1.1rem;
         line-height: 1.7;
         order: 1;
+        width: 100%;
     }
 
     .about-image {
@@ -653,6 +655,8 @@ body.modal-active {
         margin-top: 25px;
         margin-bottom: 0;
         order: 2;
+        width: 100%;
+        text-align: center;
     }
 
     .about-image img {
