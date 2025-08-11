@@ -410,6 +410,40 @@ footer {
     overflow: hidden;
 }
 
+/* Desktop and Mobile Preview Controls */
+.desktop-preview {
+    display: block;
+}
+
+.mobile-preview {
+    display: none;
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #444;
+}
+
+.mobile-preview p {
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.mobile-download-btn button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mobile-download-btn button:hover {
+    background-color: #0056b3;
+}
+
 /* Contact Form */
 #contact-form {
     display: flex;
@@ -593,17 +627,20 @@ body.modal-active {
     .about-text {
         padding-right: 0;
         max-width: 100%;
-        font-size: 0.95rem;
+        font-size: 1.1rem;
+        line-height: 1.7;
     }
 
     .about-image {
         max-width: 100%;
-        margin-top: 20px;
+        margin-bottom: 25px;
+        order: -1;
     }
 
     .about-image img {
-        max-width: 80%;
+        max-width: 70%;
         height: auto;
+        border-radius: 12px;
     }
 
     /* Section headings mobile improvements */
@@ -699,6 +736,14 @@ body.modal-active {
         margin: 20px 0;
     }
 
+    .desktop-preview {
+        display: none;
+    }
+
+    .mobile-preview {
+        display: block;
+    }
+
     .resume-preview iframe {
         height: 400px;
     }
@@ -775,8 +820,13 @@ body.modal-active {
         padding: 0 5px;
     }
 
-    .about-text, .job p, .education-item p, .publication-item p {
-        font-size: 0.85rem;
+    .about-text {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .job p, .education-item p, .publication-item p {
+        font-size: 0.9rem;
     }
 
     .project-container, .education-item, .publication-item, .job {
