@@ -87,12 +87,22 @@ main h1 {
 }
 
 /* PhD Announcement Box */
+.announcements-row {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+    justify-content: center;
+    margin: 30px auto;
+    max-width: 1200px;
+}
+
 .phd-announcement {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 15px;
     padding: 30px;
-    margin: 30px auto;
-    max-width: 800px;
+    margin: 0;
+    max-width: none;
+    flex: 1 1 0;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     border: 2px solid rgba(255, 255, 255, 0.1);
     position: relative;
@@ -326,6 +336,17 @@ footer {
     margin-bottom: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.publication-item a {
+    color: #00bfff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.publication-item a:hover {
+    text-decoration: underline;
+    color: #007acc;
 }
 
 .publication-item h3 {
@@ -677,8 +698,15 @@ body.modal-active {
     }
 
     /* PhD announcement mobile improvements */
-    .phd-announcement {
+    .announcements-row {
+        flex-direction: column;
+        gap: 15px;
         margin: 20px 10px;
+        max-width: none;
+    }
+
+    .phd-announcement {
+        margin: 0;
         padding: 20px 15px;
         border-radius: 10px;
     }
@@ -941,8 +969,13 @@ body.modal-active {
         font-size: 1.5rem;
     }
 
-    .phd-announcement {
+    .announcements-row {
         margin: 15px 5px;
+        gap: 12px;
+    }
+
+    .phd-announcement {
+        margin: 0;
         padding: 15px 10px;
     }
 
