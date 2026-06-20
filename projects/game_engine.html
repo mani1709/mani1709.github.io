@@ -12,7 +12,7 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Engine Project</title>
+    <title>VulkanParticles — Open-Source Game Engine</title>
     <link rel="icon" href="../assets/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/projects.css">
 </head>
@@ -24,12 +24,31 @@
     <main id="project-content">
         <section id="project">
             <div class="project-title">
-                <h1>Game Engine Project</h1>
+                <h1>VulkanParticles — Open-Source Vulkan Engine</h1>
             </div>
 
             <div class="description-text">
                 <p>
-                    In this project, I will create a Vulkan Game Engine in C++. Currently, this project is still not advanced enough to be showcased.
+                    <a href="https://github.com/mani1709/VulkanParticles" target="_blank" rel="noopener noreferrer">
+                        View the project on GitHub
+                    </a>
+                </p>
+
+                <p>
+                    An ongoing open-source game engine project in <strong>C++20</strong> built on Vulkan 1.4. It started as a particle-system vertical slice and is growing into a modular engine with a world editor, GPU compute particles, and a clear separation between engine, scene, and rendering layers.
+                </p>
+
+                <h2>Engineering Highlights</h2>
+                <ul>
+                    <li><strong>73 unit tests</strong> covering scene logic, particles, JSON world loading, and editor settings — run on every push via <strong>GitHub Actions</strong> CI.</li>
+                    <li>Modular architecture: application bootstrap, resource management, render passes, scene/world loading, and UI layers.</li>
+                    <li>Performance-focused rendering: CPU and GPU particle simulation paths, multi-mesh scenes, and profiling with RenderDoc.</li>
+                    <li>Developer tooling: CMake build, clang-format, structured logging (spdlog), and JSON-based world persistence.</li>
+                </ul>
+
+                <h2>Current Features</h2>
+                <p>
+                    World editor with save/load, object picking, particle emitters (burst and continuous), fly camera, Dear ImGui inspector, and GPU compute particles (10k pool). The codebase is actively developed with a documented roadmap in the repository README.
                 </p>
             </div>
         </section>

@@ -120,11 +120,37 @@ main h1 {
     pointer-events: none;
 }
 
-.phd-content {
+.phd-content,
+.announcement-content {
     position: relative;
     z-index: 1;
 }
 
+.job-announcement {
+    background: linear-gradient(135deg, #1a6b8a 0%, #2d9cdb 100%);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 0;
+    max-width: none;
+    flex: 1 1 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.job-announcement::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    pointer-events: none;
+}
+
+.job-announcement h2,
 .phd-announcement h2 {
     color: #fff;
     font-size: 1.8rem;
@@ -133,6 +159,7 @@ main h1 {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.job-announcement p,
 .phd-announcement p {
     color: #fff;
     font-size: 1.1rem;
@@ -142,6 +169,7 @@ main h1 {
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
+.job-announcement strong,
 .phd-announcement strong {
     color: #fff;
     font-weight: bold;
@@ -212,6 +240,44 @@ footer {
 }
 
 .about-text a:hover {
+    text-decoration: underline;
+    color: #007acc;
+}
+
+/* Technical Focus */
+.technical-focus {
+    background-color: #3a3a3a;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 20px 0;
+    border-left: 4px solid #2d9cdb;
+}
+
+.technical-focus h2 {
+    font-size: 2rem;
+    margin: 0 0 16px 0;
+    color: #fff;
+}
+
+.technical-focus ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.technical-focus li {
+    margin: 10px 0;
+    color: #eee;
+    line-height: 1.6;
+}
+
+.technical-focus a {
+    color: #00bfff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.technical-focus a:hover {
     text-decoration: underline;
     color: #007acc;
 }
@@ -705,17 +771,20 @@ body.modal-active {
         max-width: none;
     }
 
+    .job-announcement,
     .phd-announcement {
         margin: 0;
         padding: 20px 15px;
         border-radius: 10px;
     }
     
+    .job-announcement h2,
     .phd-announcement h2 {
         font-size: 1.4rem;
         margin-bottom: 10px;
     }
     
+    .job-announcement p,
     .phd-announcement p {
         font-size: 0.95rem;
         line-height: 1.5;
@@ -770,7 +839,7 @@ body.modal-active {
     }
 
     /* Section headings mobile improvements */
-    #about h2, #news h2, #projects h2, #education h2, #publication h2, #awards h2, #workexperience h2, #resume h2, #contact h2 {
+    #about h2, #technical-focus h2, #news h2, #projects h2, #education h2, #publication h2, #awards h2, #workexperience h2, #resume h2, #contact h2 {
         font-size: 1.5rem;
         margin-bottom: 15px;
         padding: 0 10px;
@@ -974,15 +1043,18 @@ body.modal-active {
         gap: 12px;
     }
 
+    .job-announcement,
     .phd-announcement {
         margin: 0;
         padding: 15px 10px;
     }
 
+    .job-announcement h2,
     .phd-announcement h2 {
         font-size: 1.2rem;
     }
 
+    .job-announcement p,
     .phd-announcement p {
         font-size: 0.9rem;
     }
