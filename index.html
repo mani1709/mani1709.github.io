@@ -31,7 +31,7 @@
                 <li><a href="#publication">Publications</a></li>
                 <li><a href="#awards">Awards</a></li>
                 <li><a href="#workexperience">Work Experience</a></li>
-                <li><a href="#resume">Resume</a></li>
+                <li><a href="#resume">CVs</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -278,24 +278,41 @@
             </section>
 
             <section id="resume">
-                <h2>Resume</h2>
-                <p>You can download my resume by clicking the button below:</p>
-                <a href="assets/resume.pdf" download>
-                    <button type="button">Download Resume</button>
-                </a>
-            
-                <p>Or preview my resume below:</p>
-            
-                <div class="resume-preview">
-                    <div class="desktop-preview" id="desktop-preview">
-                        <!-- Iframe will be loaded here via JavaScript only on desktop -->
-                    </div>
-                    <div class="mobile-preview">
-                        <p>📱 <strong>Mobile Preview:</strong> For the best experience on mobile devices, please use the download button above to view my resume.</p>
-                        <a href="assets/resume.pdf" download class="mobile-download-btn">
-                            <button type="button">📄 Download Resume for Mobile</button>
+                <h2>CVs</h2>
+                <p>Download or preview my CVs below:</p>
+
+                <div class="cv-grid">
+                    <article class="cv-card">
+                        <h3>Software Engineering</h3>
+                        <a href="assets/CV_Software.pdf" download class="cv-download-btn">
+                            <button type="button">Download CV</button>
                         </a>
-                    </div>
+                        <div class="resume-preview">
+                            <div class="desktop-preview cv-desktop-preview" data-pdf="assets/CV_Software.pdf" data-title="Software Engineering CV"></div>
+                            <div class="mobile-preview cv-mobile-preview">
+                                <p>📱 <strong>Mobile:</strong> Use the download button to view this CV on your device.</p>
+                                <a href="assets/CV_Software.pdf" download class="mobile-download-btn">
+                                    <button type="button">📄 Download Software CV</button>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="cv-card">
+                        <h3>PhD / Research</h3>
+                        <a href="assets/CV_PhD.pdf" download class="cv-download-btn">
+                            <button type="button">Download CV</button>
+                        </a>
+                        <div class="resume-preview">
+                            <div class="desktop-preview cv-desktop-preview" data-pdf="assets/CV_PhD.pdf" data-title="PhD Research CV"></div>
+                            <div class="mobile-preview cv-mobile-preview">
+                                <p>📱 <strong>Mobile:</strong> Use the download button to view this CV on your device.</p>
+                                <a href="assets/CV_PhD.pdf" download class="mobile-download-btn">
+                                    <button type="button">📄 Download PhD CV</button>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </section>
 
@@ -357,63 +374,59 @@
                 }
                 
                 // Resume iframe loading - only on desktop
-                function loadResumeIframe() {
-                    const desktopPreview = document.getElementById('desktop-preview');
+                function loadResumeIframes() {
                     const isMobile = window.innerWidth <= 768;
-                    
-                    if (!isMobile && desktopPreview && desktopPreview.children.length === 0) {
+                    if (isMobile) return;
+
+                    document.querySelectorAll('.cv-desktop-preview').forEach(function(container) {
+                        const pdfSrc = container.dataset.pdf;
+                        if (!pdfSrc || container.children.length > 0) return;
+
                         const iframe = document.createElement('iframe');
-                        iframe.src = 'assets/resume.pdf';
+                        iframe.src = pdfSrc;
                         iframe.width = '100%';
                         iframe.height = '600px';
-                        iframe.innerHTML = 'Your browser does not support embedded PDF previews. <a href="assets/resume.pdf" download>Download the resume here.</a>';
-                        desktopPreview.appendChild(iframe);
-                    }
+                        iframe.title = container.dataset.title || 'CV preview';
+                        iframe.innerHTML = 'Your browser does not support embedded PDF previews. <a href="' + pdfSrc + '" download>Download the CV here.</a>';
+                        container.appendChild(iframe);
+                    });
                 }
-                
-                // Check if mobile on page load and prevent any PDF loading
+
                 function initializeResumeSection() {
                     const isMobile = window.innerWidth <= 768;
-                    const desktopPreview = document.getElementById('desktop-preview');
-                    
-                    if (isMobile) {
-                        // On mobile, ensure desktop preview is completely empty
-                        if (desktopPreview) {
-                            desktopPreview.innerHTML = '';
-                            desktopPreview.style.display = 'none';
+
+                    document.querySelectorAll('.cv-desktop-preview').forEach(function(container) {
+                        if (isMobile) {
+                            container.innerHTML = '';
+                            container.style.display = 'none';
+                        } else {
+                            container.style.display = 'block';
                         }
-                    } else {
-                        // On desktop, show preview and load iframe
-                        if (desktopPreview) {
-                            desktopPreview.style.display = 'block';
-                            loadResumeIframe();
-                        }
+                    });
+
+                    if (!isMobile) {
+                        loadResumeIframes();
                     }
                 }
-                
+
                 // Initialize when page loads
                 document.addEventListener('DOMContentLoaded', initializeResumeSection);
-                
+
                 // Handle window resize
                 window.addEventListener('resize', function() {
-                    const desktopPreview = document.getElementById('desktop-preview');
                     const isMobile = window.innerWidth <= 768;
-                    
-                    if (isMobile) {
-                        // Clear iframe and hide on mobile
-                        if (desktopPreview) {
-                            desktopPreview.innerHTML = '';
-                            desktopPreview.style.display = 'none';
-                        }
-                    } else {
-                        // Show and load iframe on desktop
-                        if (desktopPreview) {
-                            desktopPreview.style.display = 'block';
-                            if (desktopPreview.children.length === 0) {
-                                loadResumeIframe();
+
+                    document.querySelectorAll('.cv-desktop-preview').forEach(function(container) {
+                        if (isMobile) {
+                            container.innerHTML = '';
+                            container.style.display = 'none';
+                        } else {
+                            container.style.display = 'block';
+                            if (container.children.length === 0) {
+                                loadResumeIframes();
                             }
                         }
-                    }
+                    });
                 });
             </script>
             </div>
