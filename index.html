@@ -31,7 +31,7 @@
                 <li><a href="#publication">Publications</a></li>
                 <li><a href="#awards">Awards</a></li>
                 <li><a href="#workexperience">Work Experience</a></li>
-                <li><a href="#resume">CVs</a></li>
+                <li><a href="#resume">CV</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -42,52 +42,30 @@
             <h1>Welcome to My Portfolio</h1>
         </div>
 
-        <!-- Software Engineering / PhD Announcements -->
-        <div class="announcements-row">
-            <div class="job-announcement">
-                <div class="announcement-content">
-                    <h2>💼 Software Engineering</h2>
-                    <p>I am looking for <strong>C++ Software Engineer</strong> roles in <strong>computer vision</strong>, <strong>graphics</strong>, <strong>AR/XR</strong>, and <strong>performance-critical systems</strong> — especially developer tooling, pipelines, and production code with strong testing. <strong>Available immediately.</strong></p>
-                    <p>Based in <strong>Vienna</strong>; also open to Amsterdam, Berlin, New York, and Barcelona.</p>
-                </div>
-            </div>
-
-            <div class="phd-announcement">
-                <div class="announcement-content">
-                    <h2>🔬 PhD Position Search</h2>
-                    <p>I am searching for <strong>PhD positions</strong> in <strong>computer vision</strong>, <strong>computer graphics</strong>, <strong>AR/XR</strong>, <strong>rendering</strong>, and <strong>machine learning</strong>. <strong>Available immediately.</strong></p>
-                    <p>Particularly interested in <strong>Amsterdam</strong> and <strong>Barcelona</strong>, with a strong publication and industry research background.</p>
-                </div>
-            </div>
-        </div>
-
         <div class="content">
             <section id="about" class="about-section">
                 <div class="about-content">
                     <div class="about-text">
                         <h2>About Me</h2>
                         <p>
-                            I am a software engineer with a strong background in computer vision and computer graphics. I like building production C++ and Python systems — from graphics engines and Unreal tooling to research data pipelines and CV prototypes.
+                            I am a software engineer focused on <strong>C++</strong>, <strong>computer vision</strong>, and <strong>computer graphics</strong>. I build production systems and research-adjacent tooling — from Vulkan engines and Unreal pipelines to large-scale synthetic data and ML training workflows.
                         </p>
                         <p>
-                            Previously at Snap Inc., I worked on synthetic data generation, 3D scene understanding, and generative models — large-scale pipelines on Google Cloud (Vertex AI, Cloud Storage), architecture experiments, and ablations showing synthetic data improved models over real-only baselines.
+                            At <strong>Snap Inc. (Specs / Spectacles)</strong>, I built synthetic data generation systems using procedural generation, agentic workflows, MCPs, 3D Gaussian Splatting, and VLMs; improved sim-to-real quality (e.g. ControlNet and augmentations); trained and adapted vision models for 3D scene understanding with ablation studies; and ran GCP pipelines (Vertex AI, GCS) generating up to <strong>5&nbsp;TB</strong> of structured training data.
                         </p>
                         <p>
-                            At ViewApp, I developed C++ and Unreal Engine tools and build automation (TeamCity). At Partium, I worked on microservices, CI/CD, and search with Docker, Kubernetes, and Elasticsearch, plus CV/ML features.
+                            At <strong>ViewApp</strong>, I engineered C++ Unreal tools and world-building pipelines, automated builds with TeamCity, and helped ship a game to Steam, PlayStation&nbsp;5, and Xbox. At <strong>Partium</strong>, I worked on Docker/Kubernetes microservices, CI/CD, Elasticsearch search, OCR, and computer vision models for spare-part recognition.
                         </p>
                         <p>
-                            I am very proficient in C++ and Python. I hold a Bachelor's and Master's in Media Computer Science from the University of Vienna, focused on computer graphics and computer vision.
+                            I hold a BSc and MSc in Media Computer Science from the University of Vienna (graphics and vision focus). German (native), English (C2).
                         </p>
                         <ul>
-                            <li>Bachelor thesis: Hand detection and pose recognition using deep learning.</li>
-                            <li>Master thesis: Procedural planet generation, open-source project with a paper presented at GAMEON 2025.</li>
-                            <li><strong><a href="https://github.com/mani1709/VulkanParticles" target="_blank" rel="noopener noreferrer">VulkanParticles</a></strong> — open-source C++20/Vulkan game engine (particle system, tests in CI); see <a href="projects/game_engine.html">project page</a>.</li>
+                            <li>Bachelor thesis: CNN hand detection and pose recognition with a procedural Unity training-data pipeline.</li>
+                            <li>Master thesis / GAMEON 2025: procedural planet generation, LOD optimization, and real-time rendering performance.</li>
+                            <li><a href="projects/game_engine.html">VulkanParticles</a> — open-source C++20/Vulkan game engine with CI and unit tests (<a href="https://github.com/mani1709/VulkanParticles" target="_blank" rel="noopener noreferrer">GitHub</a>).</li>
                         </ul>
                         <p>
-                            I also worked on a Super Mario 64 ROM hack built on the game's C decompilation (runs on original hardware) and explore topics like LLMs and robotics in side projects.
-                        </p>
-                        <p>
-                            Open to software engineering opportunities and PhD collaborations in computer vision and graphics. Feel free to reach out!
+                            Based in Vienna. Feel free to reach out!
                         </p>
                         <p>
                             <a href="http://www.linkedin.com/in/manuel-zechmann-040193235" target="_blank">LinkedIn Profile</a>
@@ -134,7 +112,7 @@
                 <div class="project-container finished-projects">
                     <h3>Finished Projects</h3>
                     <ul>
-                        <li><a href="https://github.com/mani1709/VulkanParticles" target="_blank" rel="noopener noreferrer"><strong>VulkanParticles</strong></a> — open-source <strong>C++20/Vulkan</strong> game engine; particle system, modular rendering, unit/integration tests on GitHub Actions (<a href="projects/game_engine.html">details</a>)</li>
+                        <li><a href="projects/game_engine.html">VulkanParticles</a> — open-source C++20/Vulkan game engine; particle system, modular rendering, unit/integration tests on GitHub Actions (<a href="https://github.com/mani1709/VulkanParticles" target="_blank" rel="noopener noreferrer">GitHub</a>)</li>
                         <li><a href="projects/romhack1.html">Super Mario 64 ROM hack</a> — C on the SM64 decompilation; level design in Blender; SimpleFlips Slide Hack Competition (2024)</li>
                         <li><a href="projects/bachelor_project.html">Bachelor thesis — hand detection and pose recognition with deep learning</a></li>
                         <li><a href="projects/master_project.html">Master thesis — open-source procedural planet generator (GAMEON 2025) with adaptive LOD and performance-focused rendering</a></li>
@@ -226,12 +204,12 @@
                 <!-- Snap Inc. Experience -->
                 <div class="job">
                     <h3>Computer Vision Researcher</h3>
-                    <p><strong>Snap Inc.</strong> · Full-time</p>
-                    <p>Aug 2025 - Apr 2026</p>
-                    <p>Built and operated large-scale synthetic data pipelines on Google Cloud (Vertex AI, Cloud Storage), generating and storing terabytes of data across distributed jobs on multiple machines.</p>
-                    <p>Research on 3D scene understanding and generative models: adapting network architectures, developing novel loss objectives, and extending methods for new applications in synthetic data and scene understanding.</p>
-                    <p>Worked with Python, ML frameworks, VLMs, agentic AI, 3D computer graphics tools, and on-demand cloud computing platforms.</p>
-                    <p>Active collaborator: presented research analyses to the team, participated in reading groups, and supported cross-team efforts.</p>
+                    <p><strong>Snap Inc. (Specs / Spectacles)</strong> · Full-time</p>
+                    <p>Aug 2025 – May 2026</p>
+                    <p>Built synthetic data generation systems using procedural generation, agentic workflows, MCPs, 3D Gaussian Splatting, and VLMs to create training data for vision models. Improved generated data with augmentations and methods to bridge the sim-to-real gap, like ControlNet.</p>
+                    <p>Trained and adapted vision models for 3D scene understanding, proving effectiveness of generated data with ablation studies.</p>
+                    <p>Engineered large-scale data generation pipelines on GCP (Vertex AI, GCS), generating up to 5&nbsp;TB of structured data to train robust vision models.</p>
+                    <p>Collaborated closely with the team through reading groups and cross-functional discussions, and proactively supported team efforts.</p>
                 </div>
 
                 <!-- ViewApp GmbH Experience -->
@@ -279,37 +257,21 @@
             </section>
 
             <section id="resume">
-                <h2>CVs</h2>
-                <p>Download or preview my CVs below:</p>
+                <h2>CV</h2>
+                <p>Download or preview my CV below:</p>
 
                 <div class="cv-grid">
                     <article class="cv-card">
-                        <h3>Software Engineering</h3>
-                        <a href="assets/CV_Software.pdf" download class="cv-download-btn">
+                        <h3>Curriculum Vitae</h3>
+                        <a href="assets/CV_Academic.pdf" download class="cv-download-btn">
                             <button type="button">Download CV</button>
                         </a>
                         <div class="resume-preview">
-                            <div class="desktop-preview cv-desktop-preview" data-pdf="assets/CV_Software.pdf" data-title="Software Engineering CV"></div>
+                            <div class="desktop-preview cv-desktop-preview" data-pdf="assets/CV_Academic.pdf" data-title="Curriculum Vitae"></div>
                             <div class="mobile-preview cv-mobile-preview">
                                 <p>📱 <strong>Mobile:</strong> Use the download button to view this CV on your device.</p>
-                                <a href="assets/CV_Software.pdf" download class="mobile-download-btn">
-                                    <button type="button">📄 Download Software CV</button>
-                                </a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="cv-card">
-                        <h3>PhD / Research</h3>
-                        <a href="assets/CV_PhD.pdf" download class="cv-download-btn">
-                            <button type="button">Download CV</button>
-                        </a>
-                        <div class="resume-preview">
-                            <div class="desktop-preview cv-desktop-preview" data-pdf="assets/CV_PhD.pdf" data-title="PhD Research CV"></div>
-                            <div class="mobile-preview cv-mobile-preview">
-                                <p>📱 <strong>Mobile:</strong> Use the download button to view this CV on your device.</p>
-                                <a href="assets/CV_PhD.pdf" download class="mobile-download-btn">
-                                    <button type="button">📄 Download PhD CV</button>
+                                <a href="assets/CV_Academic.pdf" download class="mobile-download-btn">
+                                    <button type="button">📄 Download CV</button>
                                 </a>
                             </div>
                         </div>
