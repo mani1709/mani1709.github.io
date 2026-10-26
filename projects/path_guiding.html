@@ -55,6 +55,101 @@
         .results-table th {
             border-bottom: 2px solid #888;
         }
+
+        /* Interactive before/after comparison */
+        .compare-buttons {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .compare-buttons button {
+            background-color: #555;
+            color: #fff;
+            border: 1px solid #777;
+            border-radius: 6px;
+            padding: 8px 14px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .compare-buttons button:hover {
+            background-color: #666;
+        }
+        .compare-buttons button.active {
+            background-color: #00bfff;
+            border-color: #00bfff;
+            color: #111;
+        }
+        .compare {
+            --pos: 50%;
+            position: relative;
+            max-width: 900px;
+            aspect-ratio: 4 / 3;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            user-select: none;
+        }
+        .compare img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+        .compare .compare-left {
+            clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+        }
+        .compare-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: var(--pos);
+            width: 2px;
+            margin-left: -1px;
+            background: #fff;
+            pointer-events: none;
+        }
+        .compare-line::after {
+            content: "⇔";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 34px;
+            height: 34px;
+            line-height: 32px;
+            text-align: center;
+            border-radius: 50%;
+            background: #fff;
+            color: #333;
+            font-size: 18px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        }
+        .compare-label {
+            position: absolute;
+            top: 10px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            font-size: 13px;
+            pointer-events: none;
+        }
+        .compare-label.left { left: 10px; }
+        .compare-label.right { right: 10px; }
+        .compare input[type="range"] {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            opacity: 0;
+            cursor: ew-resize;
+        }
     </style>
 </head>
 <body>
@@ -114,11 +209,20 @@
                 </table>
 
                 <figure class="figure">
-                    <div class="figure-row">
-                        <img src="../assets/path_guiding/torus_pt_1m.jpg" alt="Torus scene, path tracing, 1 minute">
-                        <img src="../assets/path_guiding/torus_pg_1m.jpg" alt="Torus scene, path guiding, 1 minute">
+                    <div class="compare-buttons" id="compare-buttons">
+                        <button type="button" data-mode="0" class="active">1 min: path tracing vs. path guiding</button>
+                        <button type="button" data-mode="1">5 min: path tracing vs. path guiding</button>
+                        <button type="button" data-mode="2">5 min: path guiding vs. reference</button>
                     </div>
-                    <figcaption>Equal render time (about 1 minute): path tracing (left) and path guiding (right).</figcaption>
+                    <div class="compare" id="compare">
+                        <img class="compare-right" id="compare-right" src="../assets/path_guiding/torus_pg_1m.jpg" alt="">
+                        <img class="compare-left" id="compare-left" src="../assets/path_guiding/torus_pt_1m.jpg" alt="">
+                        <div class="compare-line"></div>
+                        <span class="compare-label left" id="compare-label-left">Path tracing (1 min)</span>
+                        <span class="compare-label right" id="compare-label-right">Path guiding (1 min)</span>
+                        <input type="range" min="0" max="100" value="50" step="0.1" id="compare-range" aria-label="Comparison slider position">
+                    </div>
+                    <figcaption>Drag the slider to compare. Path tracing and path guiding use the same render time; the reference was rendered with 131,072 samples per pixel.</figcaption>
                 </figure>
 
                 <figure class="figure">
@@ -146,5 +250,36 @@
         </section>
     </main>
     <script src="../js/go_back.js"></script>
+    <script>
+        (function () {
+            const base = "../assets/path_guiding/";
+            const modes = [
+                { left: "torus_pt_1m.jpg", right: "torus_pg_1m.jpg", leftLabel: "Path tracing (1 min)", rightLabel: "Path guiding (1 min)" },
+                { left: "torus_pt_5m.jpg", right: "torus_pg_5m.jpg", leftLabel: "Path tracing (5 min)", rightLabel: "Path guiding (5 min)" },
+                { left: "torus_pg_5m.jpg", right: "torus_reference.jpg", leftLabel: "Path guiding (5 min)", rightLabel: "Reference" }
+            ];
+            const compare = document.getElementById("compare");
+            const range = document.getElementById("compare-range");
+            const left = document.getElementById("compare-left");
+            const right = document.getElementById("compare-right");
+            const leftLabel = document.getElementById("compare-label-left");
+            const rightLabel = document.getElementById("compare-label-right");
+            const buttons = document.querySelectorAll("#compare-buttons button");
+
+            // preload all images so switching modes is instant
+            modes.forEach(m => { new Image().src = base + m.left; new Image().src = base + m.right; });
+
+            range.addEventListener("input", () => compare.style.setProperty("--pos", range.value + "%"));
+
+            buttons.forEach(button => button.addEventListener("click", () => {
+                const m = modes[Number(button.dataset.mode)];
+                left.src = base + m.left;
+                right.src = base + m.right;
+                leftLabel.textContent = m.leftLabel;
+                rightLabel.textContent = m.rightLabel;
+                buttons.forEach(b => b.classList.toggle("active", b === button));
+            }));
+        })();
+    </script>
 </body>
 </html>
