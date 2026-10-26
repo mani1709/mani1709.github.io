@@ -15,6 +15,47 @@
     <title>Path Guiding in Wienori</title>
     <link rel="icon" href="../assets/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/projects.css">
+    <style>
+        .figure {
+            margin: 28px auto;
+            text-align: center;
+        }
+        .figure img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .figure-row {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .figure-row img {
+            width: calc(50% - 5px);
+            min-width: 260px;
+        }
+        .figure figcaption {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        .results-table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            color: #fff;
+            font-size: 15px;
+        }
+        .results-table th, .results-table td {
+            padding: 6px 14px;
+            border-bottom: 1px solid #666;
+            text-align: center;
+        }
+        .results-table th {
+            border-bottom: 2px solid #888;
+        }
+    </style>
 </head>
 <body>
     <div id="back-button">
@@ -29,8 +70,77 @@
 
             <div class="description-text">
                 <p>
-                    I integrated a path guiding algorithm into my Wienori path tracer to improve light transport sampling.
-                    More details and renders coming soon!
+                    <a href="https://docs.google.com/document/d/1Hnfm8yb0f7r284x6w73X9G46PMtv-zI584ragIOu0Mc/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+                        Read the full write-up with all details and results
+                    </a>
+                </p>
+
+                <figure class="figure">
+                    <img src="../assets/path_guiding/torus_showcase.jpg" alt="Torus inside a glass box rendered with path guiding">
+                    <figcaption>Torus scene rendered with path guiding (8 training iterations, then 8192 samples per pixel).</figcaption>
+                </figure>
+
+                <p>
+                    I extended my path tracer from the TU Wien rendering course (Wienori) with <strong>path guiding</strong>, following
+                    <em>Practical Path Guiding for Efficient Light-Transport Simulation</em> (Müller, Gross and Novák, EGSR 2017).
+                    A path tracer chooses new directions mostly according to the material, and next event estimation connects each surface point directly to a light source.
+                    This breaks down when light only reaches a surface through glass: in the torus scene, every shadow ray towards the sun is blocked, and the sunlight is only found by paths that pass through the glass by chance.
+                    These rare but bright paths show up as fireflies that converge very slowly.
+                </p>
+
+                <h2>How it works</h2>
+                <p>
+                    Path guiding learns, during rendering, from which directions light arrives at each point in the scene, and samples new directions from this learned distribution.
+                    The incident light is stored in an <strong>SD-tree</strong>: a spatial binary tree that adaptively subdivides the scene, with a directional quadtree in each leaf.
+                    The tree is trained over several iterations with doubling sample counts, and the guided directions are combined with material sampling and next event estimation through multiple importance sampling, so the result stays unbiased.
+                </p>
+
+                <figure class="figure">
+                    <img src="../assets/path_guiding/quadtree_progression.png" alt="Learned directional distribution over five training iterations">
+                    <figcaption>Learned directional distribution at the top of the torus over five training iterations. It concentrates on a single bright direction: the path through the glass towards the sun.</figcaption>
+                </figure>
+
+                <h2>Results</h2>
+                <p>
+                    I compared path guiding against my baseline path tracer (with next event estimation, MIS and Russian roulette) at equal render time, with a reference rendered at 131,072 samples per pixel.
+                    In the torus scene, path guiding has a lower error at every budget:
+                </p>
+
+                <table class="results-table">
+                    <tr><th>Budget</th><th>MSE vs. path tracing</th><th>Visible error (FLIP) vs. path tracing</th></tr>
+                    <tr><td>10 s</td><td>−10%</td><td>−28%</td></tr>
+                    <tr><td>1 min</td><td>−21%</td><td>−21%</td></tr>
+                    <tr><td>5 min</td><td>−27%</td><td>−14%</td></tr>
+                </table>
+
+                <figure class="figure">
+                    <div class="figure-row">
+                        <img src="../assets/path_guiding/torus_pt_1m.jpg" alt="Torus scene, path tracing, 1 minute">
+                        <img src="../assets/path_guiding/torus_pg_1m.jpg" alt="Torus scene, path guiding, 1 minute">
+                    </div>
+                    <figcaption>Equal render time (about 1 minute): path tracing (left) and path guiding (right).</figcaption>
+                </figure>
+
+                <figure class="figure">
+                    <img src="../assets/path_guiding/torus_crop_5m.jpg" alt="Crops of the torus: path tracing, path guiding, reference">
+                    <figcaption>Crops at 5 minutes: path tracing (left), path guiding (middle), reference (right).</figcaption>
+                </figure>
+
+                <p>
+                    In the Cornell box, where next event estimation already handles the light well, both methods are visually equal.
+                    There, the extra cost of guiding outweighs its small gain per sample, which shows the trade-off of the method:
+                    path guiding pays off where next event estimation fails, and when the render budget is large enough to amortize the training.
+                </p>
+
+                <figure class="figure">
+                    <img src="../assets/path_guiding/cbox_showcase.jpg" alt="Cornell box rendered with path guiding" style="max-width: 600px;">
+                    <figcaption>Cornell box rendered with path guiding.</figcaption>
+                </figure>
+
+                <h2>Verification</h2>
+                <p>
+                    Each part was checked separately: a χ² test for the quadtree's sampling and pdf, a comparison against the baseline to make sure the guided images converge to the same result,
+                    and debug visualizations of the spatial tree and the learned directional distributions.
                 </p>
             </div>
         </section>
